@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Số liệu thống kê</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="icon" type="image/x-icon" href="https://img.lovepik.com/element/40020/4069.png_860.png">
+<style>
+
+body {
+  background-color: #F0FFFF;
+  margin: 200;
+  font-family: Times new roman , sans-serif;
+  font-size: 150%;
+}
+
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: black;
+  font-family: Times new roman , sans-serif;
+}
+
+.navbar a {
+  float: left;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/* Current/active navbar link */
+.active {
+  background-color: #04AA6D;
+}
+
+/* Style the content */
+.content {
+  background-color: #F0FFFF;
+  padding: 20px;
+  font-family: Times new roman;
+}
+
+/* Style the footer */
+.footer {
+  background-color: white;
+  padding: 10px;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 20px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: black;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: green;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="./TC.html"><i class="fa fa-fw fa-home"></i>Trang chủ</a>
+  <a href="./TV.html"><i class="fa fa-fw fa-user"></i>Thành viên nhóm</a>
+  <a href="./TN.html"><i class="fa fa-fw fa-car"></i>Nhập hàng</a>
+  <a href="./TX.html"><i class="fa fa-fw fa-truck"></i>Xuất hàng</a>
+  <a href="TK.html"><i class="fa fa-fw fa-file"></i>Số lượng thống kê</a>
+  <div class="dropdown">
+    <button class="dropbtn"><i class="fa fa-fw fa-bars"></i>Xem thêm 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a class="active" href="./LH.html" style="color: white;"><i class="fa fa-fw fa-envelope"></i>Liên hệ</a>
+      <a href="https://www.w3schools.com/" target="_blank"style="color: white;"><i class="fa fa-fw fa-search"></i>Nguồn tham khảo</a>
+      <a href="https://cet.ctu.edu.vn/don-vi/bo-mon-quan-ly-cong-nghiep.html" target="_blank" style="color: white;"><i class="fa fa-fw fa-thumbs-up"></i>Quản lý Công Nghiệp</a>
+    </div>
+  </div>
+</div>
+
+  <div class="w3-container" style="background-color:#000080";>
+  <h1 align="center" >
+    <font face="times new roman"; color="white";>
+     <b>BIỂU ĐỒ THỐNG KÊ SỐ LIỆU</b>
+</font> 
+  <br>
+</h1>
+  <h2 align="center">
+<font face="times new roman"; color="white";>
+  Thông tin về số lượng ngày nhập và ngày phân phối của các nguyên liệu và thành phẩm</h2> 
+</font>
+<br>
+</div>
+<style>
+  body{
+    background-color: #F0FFFF;
+  }
+</style>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script> 
+<script>
+    function thongKeVai()
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?api_key= MIF0JNEW7NXAPFEG & field1 = 0";
+        urlHere = "https://api.thingspeak.com/channels/ 1711121 /feeds.json";
+        request.open('GET', urlHere, true);
+        request.onload = function() {
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+                var length = data.feeds.length;  //kich thuoc du lieu
+                //loc bo cac phan tu null
+                dataVai = new Array();
+
+                for(i=0;i<length;i++){
+                    dataVai.push(data.feeds[i].field2);
+                }
+
+                // hiển thị số lượng tồn kho
+                tongVai=0;
+                //tính tổng xuất
+                for(i=0;i<dataVai.length;i++){
+                  tongVai += parseInt(dataVai[i]);
+                }
+                //console.log(tongXuat);
+
+
+                //tính tồn kho
+                //tonKho = (tongNhapVai + tongNhapChi+ tongNhapNut)/3 - tongXuat;
+                //document.getElementById("thongke").innerHTML = "Tổng số sản phẩm đang trong kho:"+tonKho;
+                //Ve bieu đồ nhập xuất
+                var yVai = new Array();
+                var xVai = new Array();
+
+                for(var i=0;i<length;i++){
+                    yVai.push(data.feeds[i].field2);
+                    xVai.push(data.feeds[i].field1);
+                }
+                console.log(yVai);
+                console.log(xVai);
+                //bieu đồ
+
+                new Chart("chartVai", {
+                    type: "bar",
+                    data: {
+                        labels: xVai,
+                        datasets: [
+                        {
+                            fill: false,
+                            backgroundColor: "#000080",
+                            label: "Biểu đồ số lượng vải đã nhập",
+                            data: yVai
+                        }, 
+                        ]
+                    },
+                    options: {
+                        plugins:{
+                            legend: {
+                                display: true,
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                    //max: (yVai.max)
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            } else {
+            // We reached our target server, but it returned an error
+            }
+        };
+        request.send();
+
+        
+        //request.open('GET', urlHere, true);
+        //request.send();
+    }
+    
+function thongKeChi()
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?api_key=47KOWNVP1T7V8ARW & field1 = 0";
+        urlHere = "https://api.thingspeak.com/channels/ 1742154 /feeds.json";
+        request.open('GET', urlHere, true);
+        request.onload = function() {
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+                var length = data.feeds.length;  //kich thuoc du lieu
+                //loc bo cac phan tu null
+                dataChi = new Array();
+
+                for(i=0;i<length;i++){
+                    dataChi.push(data.feeds[i].field2);
+                }
+
+                // hiển thị số lượng tồn kho
+                tongChi=0, tonKho=0;
+                //tính tổng xuất
+                for(i=0;i<dataXuat.length;i++){
+                  tongChi += parseInt(dataXuat[i]);
+                }
+                //console.log(tongXuat);
+
+
+                //tính tồn kho
+                //tonKho = (tongNhapVai + tongNhapChi+ tongNhapNut)/3 - tongXuat;
+                //document.getElementById("thongke").innerHTML = "Tổng số sản phẩm đang trong kho:"+tonKho;
+                //Ve bieu đồ nhập xuất
+                var yChi = new Array();
+                var xChi = new Array();
+
+                for(var i=0;i<length;i++){
+                    yChi.push(data.feeds[i].field2);
+                    xChi.push(data.feeds[i].field1);
+                }
+                console.log(yChi);
+                console.log(xChi);
+                //bieu đồ
+
+                new Chart("chartChi", {
+                    type: "bar",
+                    data: {
+                        labels: xChi,
+                        datasets: [
+                        {
+                            fill: false,
+                            backgroundColor: "#B22222",
+                            label: "Biểu đồ số lượng chỉ đã nhập",
+                            data: yChi
+                        }, 
+                        ]
+                    },
+                    options: {
+                        plugins:{
+                            legend: {
+                                display: true,
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                    //max: (yChi.max)
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            } else {
+            // We reached our target server, but it returned an error
+            }
+        };
+        request.send();
+
+        
+        //request.open('GET', urlHere, true);
+        //request.send();
+    }
+function thongKeNutao()
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?api_key=D84RFK272UKIITPU & field1 = 0";
+        urlHere = "https://api.thingspeak.com/channels/ 1742155 /feeds.json";
+        request.open('GET', urlHere, true);
+        request.onload = function() {
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+                var length = data.feeds.length;  //kich thuoc du lieu
+                //loc bo cac phan tu null
+                dataNutao = new Array();
+
+                for(i=0;i<length;i++){
+                    dataChi.push(data.feeds[i].field2);
+                }
+
+                // hiển thị số lượng tồn kho
+                tongNutao=0, tonKho=0;
+                //tính tổng xuất
+                for(i=0;i<dataXuat.length;i++){
+                  tongNutao += parseInt(dataXuat[i]);
+                }
+                //console.log(tongXuat);
+
+
+                //tính tồn kho
+                //tonKho = (tongNhapVai + tongNhapChi+ tongNhapNut)/3 - tongXuat;
+                //document.getElementById("thongke").innerHTML = "Tổng số sản phẩm đang trong kho:"+tonKho;
+                //Ve bieu đồ nhập xuất
+                var yNutao = new Array();
+                var xNutao = new Array();
+
+                for(var i=0;i<length;i++){
+                    yNutao.push(data.feeds[i].field2);
+                    xNutao.push(data.feeds[i].field1);
+                }
+                console.log(yNutao);
+                console.log(xNutao);
+                //bieu đồ
+
+                new Chart("chartNutao", {
+                    type: "bar",
+                    data: {
+                        labels: xNutao,
+                        datasets: [
+                        {
+                            fill: false,
+                            backgroundColor: "#006400",
+                            label: "Biểu đồ số lượng Nút áo đã nhập",
+                            data: yNutao
+                        }, 
+                        ]
+                    },
+                    options: {
+                        plugins:{
+                            legend: {
+                                display: true,
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                    //max: (yChi.max)
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            } else {
+            // We reached our target server, but it returned an error
+            }
+        };
+        request.send();
+
+        
+        //request.open('GET', urlHere, true);
+        //request.send();
+    }
+function thongKeTP()
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?api_key= A41RZCOPLNDDCX1R & field1 = 0";
+        urlHere = "https://api.thingspeak.com/channels/ 1742157 /feeds.json";
+        request.open('GET', urlHere, true);
+        request.onload = function() {
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+                var length = data.feeds.length;  //kich thuoc du lieu
+                //loc bo cac phan tu null
+                dataXuat = new Array();
+
+                for(i=0;i<length;i++){
+                    dataXuat.push(data.feeds[i].field2);
+                }
+
+                // hiển thị số lượng tồn kho
+                tongXuat=0, tonKho=0;
+                //tính tổng xuất
+                for(i=0;i<dataXuat.length;i++){
+                  tongXuat += parseInt(dataXuat[i]);
+                }
+                //console.log(tongXuat);
+
+
+                //tính tồn kho
+                //tonKho = (tongNhapVai + tongNhapChi+ tongNhapNut)/3 - tongXuat;
+                //document.getElementById("thongke").innerHTML = "Tổng số sản phẩm đang trong kho:"+tonKho;
+                //Ve bieu đồ nhập xuất
+                var yXuat = new Array();
+                var xXuat = new Array();
+
+                for(var i=0;i<length;i++){
+                    yXuat.push(data.feeds[i].field2);
+                    xXuat.push(data.feeds[i].field1);
+                }
+                console.log(yXuat);
+                console.log(xXuat);
+                //bieu đồ
+
+                new Chart("chartXuat", {
+                    type: "bar",
+                    data: {
+                        labels: xXuat,
+                        datasets: [
+                        {
+                            fill: false,
+                            backgroundColor: "#FF8C00",
+                            label: "Biểu đồ số lượng áo sơ mi đã xuất",
+                            data: yXuat
+                        }, 
+                        ]
+                    },
+                    options: {
+                        plugins:{
+                            legend: {
+                                display: true,
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                    //max: (yXuat.max)
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            } else {
+            // We reached our target server, but it returned an error
+            }
+        };
+        request.send();
+
+        
+        //request.open('GET', urlHere, true);
+        //request.send();
+    }
+</script> 
+<style>
+#customers {
+  font-family: times new roman, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color:#E0FFFF;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    background-color: black;
+    color: white;
+}
+#customers td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  color: black;
+}
+#customers {
+  font-family: times new roman, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+</style>
+</div>
+<div class="content">
+  <form name="form2">
+        <input type = "button" value = "Chạy số liệu" onclick = "thongKeTP(), thongKeVai(),thongKeChi(),thongKeNutao();">
+  </form>
+  <p id="thongke"> </p>
+  <h2 align = "center" ><font face="times new roman"><i class="fa fa-fw fa-caret-down"></i><b>Biểu đồ thống kê cho nguyên liệu vải:</b></h2>
+  <table>
+  <tr>
+    <td><canvas id="chartVai" style="width:500%; max-width: 1000p;"></canvas></td>
+    <td><img src="https://muaphelieu247.com/wp-content/uploads/2021/06/187.jpg" alt="Pineapple" width="600" height="350"></td>
+  </tr>
+  </table>
+  
+  <table>
+      <table id="customers">
+  <tr>
+    <th><b>Ngày nhập hàng</b></th>
+    <th><b>Số lượng(đơn vị: cuộn)</b></th>
+  </tr>
+  <tr>
+    <td>02/01/2021</td>
+    <td>8700</td>
+  </tr>
+  <tr>
+    <td>17/02/2021</td>
+    <td>9900</td>
+  </tr>
+  <tr>
+    <td>04/03/2021</td>
+    <td>6120</td>
+  </tr>
+  <tr>
+    <td>23/04/2021</td>
+    <td>10120</td>
+  </tr>
+  <tr>
+    <td>10/05/2021</td>
+    <td>9900</td>
+  </tr>
+  </table>
+  
+  <h2 align = "center" ><font face="times new roman"><i class="fa fa-fw fa-caret-down"></i><b>Biểu đồ thống kê cho nguyên liệu chỉ:</b></h2>
+  
+<table>
+  <tr>
+    <td><canvas id="chartChi" style="width:500%;max-width:1000px;"></canvas></td>
+    <td><img src="https://quatangtanthegioi.com/image/dia-diem-ban-len-cuon-o-tphcm-816j.jpg" alt="Pineapple" width="600" height="350"></td>
+  </tr>
+  </table>
+<table>
+      <table id="customers">
+  <tr>
+    <th><b>Ngày nhập hàng</b></th>
+    <th><b>Số lượng(đơn vị: cuộn)</b></th>
+  </tr>
+  <tr>
+    <td>17/01/2021</td>
+    <td>28000</td>
+  </tr>
+  <tr>
+    <td>02/02/2021</td>
+    <td>35000</td>
+  </tr>
+  <tr>
+    <td>23/03/2021</td>
+    <td>32000</td>
+  </tr>
+  <tr>
+    <td>05/04/2021</td>
+    <td>30000</td>
+  </tr>
+  <tr>
+    <td>03/05/2021</td>
+    <td>45000</td>
+  </tr>
+  </table>
+  
+ <h2 align = "center" ><font face="times new roman"><i class="fa fa-fw fa-caret-down"></i><b>Biểu đồ thống kê cho nguyên liệu Nút áo:</b></h2>
+  
+  
+<table>
+  <tr>
+    <td><canvas id="chartNutao" style="width:500%;max-width:1000px;"></canvas></td>
+    <td><img src="https://may86.com/wp-content/uploads/2020/02/khuy-nhua-ok.jpg" alt="Pineapple" width="600" height="350"></td>
+  </tr>
+  </table>
+<table>
+      <table id="customers">
+  <tr>
+    <th><b>Ngày nhập hàng</b></th>
+    <th><b>Số lượng(đơn vị: cái)</b></th>
+  </tr>
+  <tr>
+    <td>01/01/2021</td>
+    <td>70000</td>
+  </tr>
+  <tr>
+    <td>07/02/2021</td>
+    <td>84000</td>
+  </tr>
+  <tr>
+    <td>15/03/2021</td>
+    <td>97000</td>
+  </tr>
+  <tr>
+    <td>26/04/2021</td>
+    <td>67000</td>
+  </tr>
+  <tr>
+    <td>12/05/2021</td>
+    <td>77000</td>
+  </tr>
+  </table>
+  
+  <h2 align = "center" ><font face="times new roman"><i class="fa fa-fw fa-caret-down"></i><b>Biểu đồ thống kê cho thành phẩm áo sơ mi:</b></h2>
+
+<table>
+  <tr>
+    <td><canvas id="chartXuat" style="width:500%;max-width:1000px;"></canvas></td>
+    <td><img src="http://file.hstatic.net/1000114455/file/the_nao_la_ao_so_mi_nam_cao_cap_1_d0c066f9bdae40e69eac4c48a2f4d34c_grande.jpg" alt="Pineapple" width="600" height="350"></td>
+  </tr>
+  </table>
+<table>
+      <table id="customers">
+  <tr>
+    <th><b>Ngày nhập hàng</b></th>
+    <th><b>Số lượng(đơn vị: cái)</b></th>
+  </tr>
+  <tr>
+    <td>30/01/2021</td>
+    <td>9940</td>
+  </tr>
+  <tr>
+    <td>28/02/2021</td>
+    <td>8540</td>
+  </tr>
+  <tr>
+    <td>29/03/2021</td>
+    <td>7120</td>
+  </tr>
+  <tr>
+    <td>30/04/2021</td>
+    <td>8120</td>
+  </tr>
+  <tr>
+    <td>21/05/2021</td>
+    <td>6690</td>
+  </tr>
+  </table>
+  
+</div>
+</body>
+</html>

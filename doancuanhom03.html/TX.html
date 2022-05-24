@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Xuất hàng</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="icon" type="image/x-icon" href="https://png.pngtree.com/png-clipart/20201024/ourlarge/pngtree-cartoon-delivery-service-elements-png-image_2374296.jpg">
+<style>
+
+body {
+  background-color: #F0FFFF;
+  margin: 200;
+  font-family: Times new roman , sans-serif;
+  font-size: 150%;
+}
+
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: black;
+  font-family: Times new roman , sans-serif;
+}
+
+.navbar a {
+  float: left;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/* Current/active navbar link */
+.active {
+  background-color: #04AA6D;
+}
+
+/* Style the content */
+.content {
+  background-color: #ddd;
+  padding: 10px;
+}
+
+/* Style the footer */
+.footer {
+  background-color: white;
+  padding: 10px;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 20px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: black;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: green;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="./TC.html"><i class="fa fa-fw fa-home"></i>Trang chủ</a>
+  <a href="./TV.html"><i class="fa fa-fw fa-user"></i>Thành viên nhóm</a>
+  <a href="./TN.html"><i class="fa fa-fw fa-car"></i>Nhập hàng</a>
+  <a href="TX.html"><i class="fa fa-fw fa-truck"></i>Xuất hàng</a>
+  <a href="./TK.html"><i class="fa fa-fw fa-file"></i>Số lượng thống kê</a>
+  <div class="dropdown">
+    <button class="dropbtn"><i class="fa fa-fw fa-bars"></i>Xem thêm 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a class="active" href="./LH.html" style="color: white;"><i class="fa fa-fw fa-envelope"></i>Liên hệ</a>
+      <a href="https://www.w3schools.com/" target="_blank"style="color: white;"><i class="fa fa-fw fa-search"></i>Nguồn tham khảo</a>
+      <a href="https://cet.ctu.edu.vn/don-vi/bo-mon-quan-ly-cong-nghiep.html" target="_blank" style="color: white;"><i class="fa fa-fw fa-thumbs-up"></i>Quản lý Công Nghiệp</a>
+    </div>
+  </div>
+</div>
+
+<div class="w3-container" style="background-color:#000080";>
+  <h1 align="center" >
+    <font face="times new roman"; color="white";>
+    <b>THÔNG TIN CÁC THÀNH PHẨM XUẤT</b>
+</font> 
+  <br>
+</h1>
+  <h2 align="center">
+<font face="times new roman"; color="white";>
+Thông tin về thành phẩm xuất của quy trình phân phối chuỗi cung ứng may mặc áo sơ mi</h2> 
+</font>
+<br>
+</div>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+
+/* Center website */
+.main {
+  max-width: 1000px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 35px;
+  word-break: break-all;
+font-family: Times new roman;
+}
+h4{
+   font-size: 24px;
+  word-break: break-all;
+  font-family: Times new roman;
+}
+.row {
+  margin: 10px -16px;
+}
+
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  display: none; /* Hide all elements by default */
+}
+
+/* Clear floats after rows */ 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.content {
+  background-color: white;
+  padding: 10px;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: white;
+  cursor: pointer;
+
+}
+
+.btn:hover {
+  background-color: #000080;
+}
+
+.btn.active {
+  background-color: #000080;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<h2><font face="times new roman"; color="black";><b>Một số hình ảnh cho thành phẩm xuất áo sơ mi:</b></font></h2>
+
+<div id="myBtnContainer">
+  <button class="btn active" onclick="filterSelection('cả')"> Tất cả </button>
+  <button class="btn" onclick="filterSelection('nam')">Sơ mi nam</button>
+  <button class="btn" onclick="filterSelection('nữ')">Sơ mi nữ</button>
+  <button class="btn" onclick="filterSelection('Khác')"> Khác</button>
+</div>
+
+<!-- Portfolio Gallery Grid -->
+<div class="row">
+  <div class="column Sơ mi nam">
+    <div class="content">
+      <img src="https://cf.shopee.vn/file/735caa41c135e917b0e60692dcb58fdb" alt="Sơ mi tay ngắn" style="width:100%">
+      <h4>Sơ mi tay ngắn</h4>
+    </div>
+  </div>
+  
+  <div class="column Sơ mi nam">
+    <div class="content">
+      <img src="https://cf.shopee.vn/file/5d5ee56259dd3566032047a74219b957" alt="Sơ mi tay dài" style="width:100%">
+      <h4>Sơ mi tay dài</h4>
+    </div>
+  </div>
+  
+  
+  <div class="column Sơ mi nữ">
+    <div class="content">
+      <img src="https://vn-test-11.slatic.net/p/cd88a2a6c1be135ca8d4f4de94f8ab4f.jpg" alt="Sơ mi caro" style="width:100%">
+      <h4>Sơ mi caro</h4> 
+    </div>
+  </div>
+
+  <div class="column Sơ mi nữ">
+  <div class="content">
+      <img src="https://cf.shopee.vn/file/fa4960228d8a2be9fe2e4eec8bd409fb" alt="Sơ mi tay phồng" style="width:100%">
+      <h4>Sơ mi tay phồng</h4> 
+    </div>
+  </div>
+  
+  <div class="column Khác">
+    <div class="content">
+    <img src="https://bizweb.dktcdn.net/thumb/1024x1024/100/305/277/products/k9a4492.jpg?v=1646708375853" alt="Sơ mi Hawai" style="width:100%">
+      <h4>Sơ mi Hawai</h4>
+      
+    </div>
+  </div>
+  
+  <div class="column Khác">
+    <div class="content">
+    <img src="https://cf.shopee.vn/file/64b4ac614f15025f879cf7a6d35733f6" alt="Sơ mi thiết kế" style="width:100%">
+      <h4>Sơ mi thiết kế</h4>
+    </div>
+  </div>
+<!-- END GRID -->
+</div>
+
+<!-- END MAIN -->
+</div>
+
+<script>
+filterSelection("cả")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("column");
+  if (c == "cả") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+<script type="text/javascript">
+    function nhapTP(dat1, dat2)
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?";
+        urlHere = urlHere + "api_key=CZ6R43B9XWFSMWXN&field1=";
+        urlHere = urlHere + dat1 + "&field2=" + dat2;
+        request.open('GET', urlHere, true);
+        request.send();
+    }
+</script>
+
+<style>
+  table {
+  font-family: Times new roman, sans-serif, center;
+  border-collapse:collapse;
+  width: 100%;
+}
+
+td, th, {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 16px;
+}
+</style>
+
+<table>
+  <tr>
+    <th>
+      <form name="form1">
+      <fieldset>
+<legend>Thông tin xuất hàng của thành phẩm </legend>
+<ol>
+<li><b>Ngày xuất hàng:</b><br>
+  <input type="text" name= "dat1" value="0">
+</li>
+
+<br>
+<li><b>Số lượng:</b><br><input type="text" name= "dat2" value="0"></li>
+
+  <br><br>
+  <input type="button" value="Xuất" onclick = "nhapTP(form1.dat1.value,form1.dat2.value)">
+</ol>
+</fieldset>
+</form>
+</div>
+    </th>
+  </tr>
+</table>
+
+</style>
+</div>
+</body>
+</html>
